@@ -27,13 +27,7 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-
   List<Icon> thelist = [];
-
-
-
-
-  int pagecount = 0;
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +40,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                quizBrain.listofquestion[pagecount].question,
+                quizBrain.getQuestionText(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -71,30 +65,25 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool thecorrectanswer = quizBrain.listofquestion[pagecount].answer;
-                if (quizBrain.listofquestion[pagecount].answer == true) {
-                    thelist.add(
-                      Icon(
-                        Icons.check,
-                        color: Colors.green,
-                      ),
-                    );
-                  } else {
-                    thelist.add(
-                      Icon(
-                        Icons.close,
-                        color: Colors.red,
-                      ),
-                    );
-                  }
+
+                if (quizBrain.getanswer() == true) {
+                  thelist.add(
+                    Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  );
+                } else {
+                  thelist.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
+                }
 
                 setState(() {
-                  
-                  if (pagecount < 2) {
-                    pagecount++;
-                  } else {
-                    pagecount = 0;
-                  }
+                  quizBrain.nextQuestion();
                 });
               },
             ),
@@ -114,30 +103,25 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool thecorrectanswer = quizBrain.listofquestion[pagecount].answer;
-                if (quizBrain.listofquestion[pagecount].answer == false) {
-                      thelist.add(
-                        Icon(
-                          Icons.check,
-                          color: Colors.green,
-                        ),
-                      );
-                    } else {
-                      thelist.add(
-                        Icon(
-                          Icons.close,
-                          color: Colors.red,
-                        ),
-                      );
-                    }
+
+                if (quizBrain.getanswer() == false) {
+                  thelist.add(
+                    Icon(
+                      Icons.check,
+                      color: Colors.green,
+                    ),
+                  );
+                } else {
+                  thelist.add(
+                    Icon(
+                      Icons.close,
+                      color: Colors.red,
+                    ),
+                  );
+                }
 
                 setState(() {
-                  if (pagecount < 2) {
-                    
-                    pagecount++;
-                  } else {
-                    pagecount = 0;
-                  }
+                  quizBrain.nextQuestion();
                 });
               },
             ),
