@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'Quizzbrain.dart';
 
+QuizBrain quizBrain = QuizBrain();
 void main() => runApp(Quizzler());
 
 class Quizzler extends StatelessWidget {
@@ -25,13 +27,12 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<String> questions = [
-    'You can lead a cow down stairs but not up stairs.',
-    'Approximately one quarter of human bones are in the feet.',
-    'A slug\'s blood is green.'
-  ];
-  List<bool> answers = [false, true, true];
+
   List<Icon> thelist = [];
+
+
+
+
   int pagecount = 0;
 
   @override
@@ -45,7 +46,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[pagecount],
+                quizBrain.listofquestion[pagecount].question,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -70,8 +71,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool thecorrectanswer = answers[pagecount];
-                if (answers[pagecount] == true) {
+                bool thecorrectanswer = quizBrain.listofquestion[pagecount].answer;
+                if (quizBrain.listofquestion[pagecount].answer == true) {
                     thelist.add(
                       Icon(
                         Icons.check,
@@ -113,8 +114,8 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool thecorrectanswer = answers[pagecount];
-                if (answers[pagecount] == false) {
+                bool thecorrectanswer = quizBrain.listofquestion[pagecount].answer;
+                if (quizBrain.listofquestion[pagecount].answer == false) {
                       thelist.add(
                         Icon(
                           Icons.check,
