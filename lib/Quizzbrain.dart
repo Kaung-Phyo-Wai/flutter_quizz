@@ -31,7 +31,7 @@ class QuizBrain {
   ];
 
   void nextQuestion() {
-    if (_pagecount < _listofquestion.length) {
+    if (_pagecount < _listofquestion.length-1) {
       _pagecount++;
     }
   }
